@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 class Question(models.Model):
     question = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.question
+
 
 # Answer choice for a question
 # Each choice also has some points
@@ -12,6 +15,9 @@ class Choice(models.Model):
     choice = models.CharField(max_length=100)
     points = models.IntegerField(default=0)
     question = models.ForeignKey(Question)
+
+    def __str__(self):
+        return self.choice+" ( "+str(self.points)+" )"
 
 
 # Victim, can be Expected or Real Victim
@@ -30,10 +36,20 @@ class Victim(models.Model):
     choices = models.ManyToManyField(Choice, blank=True)
     user = models.ForeignKey(User)
 
+    def __str__(self):
+        return self.name
+
 
 # Extra information of the user that is not stored by django by default
 class UserExtra(models.Model):
     phone = models.CharField(max_length=30)
     address = models.CharField(max_length=150)
     user = models.OneToOneField(User)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name = "User Extra"
+        verbose_name_plural = "Users Extra"
 
