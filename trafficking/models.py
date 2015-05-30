@@ -20,14 +20,22 @@ class Choice(models.Model):
         return self.choice+" ( "+str(self.points)+" )"
 
 
+GENDERS = (
+    (0, 'Male'),
+    (1, 'Female'),
+)
 # Victim, can be Expected or Real Victim
-# Also stores location (lat, long) of victim, victim's answers 
+# Stores basic info about victim (name, gender, age)
+# as well as location (lat, long) of victim, victim's answers 
 # to the questions and user who submitted the form for the victim
 class Victim(models.Model):
     name = models.CharField(max_length=50)
+    gender = models.IntegerField(choices=GENDERS)
+    age = models.IntegerField()
+
     latitude = models.FloatField()
     longitude = models.FloatField()
-
+    
     VICTIM_TYPES = (
         (1, 'Victim'),
         (2, 'Expected Victim'),
