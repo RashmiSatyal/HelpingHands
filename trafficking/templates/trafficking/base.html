@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<html>
+<head>
+    <title> HelpingHands </title>
+    <script src="{% static 'js/jquery/jquery.min.js' %}"></script>
+    <link href = "{% static 'css/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    <div class="header">
+    </div>
+
+    <div>
+        {% block content %} {% endblock %}
+    </div>
+
+    <div class = "footer">
+    </div>
+
+    {% block footer %} {% endblock %}
+    
+</body>
+
+</html>
